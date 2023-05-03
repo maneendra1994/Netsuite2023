@@ -4,7 +4,8 @@ for (var i=0;i<total.length;i++){
     console.log(obj);
     for(var k=0;k<obj.length;k++){
         var result=obj[k];
-        var qty=obj[k].qty;if(remaningQty>0){
+        var qty=obj[k].qty;
+        if(remaningQty>0){
         remaningQty=Number(remaningQty)-Number(qty);console.log('remaningQty'+qty,remaningQty);
         if(remaningQty>=0){
            arry.push({'id':result.id,'qty':result.qty,'sn':result.sn,'total':result.id+'-'+total[i]});
