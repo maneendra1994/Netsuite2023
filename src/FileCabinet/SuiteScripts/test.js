@@ -22,3 +22,7 @@ for (var i=0;i<total.length;i++){
         
     } console.log(obj);
 } console.log(arry);
+SELECT item.upccode, item.description,item.custitem_mb_item_carat_weight,item.itemid, InvtItemPriceHistory.price  FROM  Item INNER JOIN InvtItemPriceHistory ON ( InvtItemPriceHistory.item = item.ID )   INNER JOIN priceLevel ON
+		                     ( InvtItemPriceHistory.pricetype = priceLevel.id )  WHERE  priceLevel.id=1 AND Item.itemid=?`; /*`SELECT item.upccode  AS upccode ,
+                                item.description,item.custitem_mb_item_carat_weight,item.itemid  FROM item  
+                                WHERE item.itemid=
