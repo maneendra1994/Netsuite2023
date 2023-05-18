@@ -26,3 +26,28 @@ SELECT item.upccode, item.description,item.custitem_mb_item_carat_weight,item.it
 		                     ( InvtItemPriceHistory.pricetype = priceLevel.id )  WHERE  priceLevel.id=1 AND Item.itemid=?`; /*`SELECT item.upccode  AS upccode ,
                                 item.description,item.custitem_mb_item_carat_weight,item.itemid  FROM item  
                                 WHERE item.itemid=
+					SELECT SUM(TAL.amount) AS GLAmount, 
+ SUM(TAL.credit) AS credit, 
+ SUM(TAL.debit) AS Debit, 
+ SUM(TAL.netamount) AS netamount, 
+ SUM(TL.foreignamount) AS foreignamount,
+  A.acctnumber AS AccountNumber, 
+  A.fullname AS AccountName,
+FROM transactionaccountingline TAL 
+LEFT JOIN transaction T
+  ON T.id = TAL.transaction
+LEFT JOIN account A 
+  ON TAL.account = A.id
+LEFT JOIN transactionline TL
+  ON TL.transaction = TAL.transaction
+LEFT JOIN accountingperiod AP
+  ON T.postingperiod = AP.id
+LEFT JOIN subsidiary S
+  ON S.id = TL.subsidiary
+WHERE TL.subsidiary = 1 AND 
+  TAL.posting = 'T' AND
+  TL.id = TAL.transactionline 
+GROUP BY A.acctnumber,
+  A.fullname
+
+
