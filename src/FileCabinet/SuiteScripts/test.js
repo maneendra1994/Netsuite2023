@@ -51,3 +51,21 @@ GROUP BY A.acctnumber,
   A.fullname
 
 
+SELECT Transaction.trandate, Transaction.tranid, 
+Transaction.type, Transaction.entity, 
+SystemNote.newvalue,
+ SystemNote.date, SystemNote.type,
+ SystemNote.oldvalue, SystemNote.name
+FROM 
+TransactionLine,
+Transaction 
+LEFT OUTER JOIN SystemNote  ON
+( SystemNote.RecordID = Transaction.ID )
+AND  SystemNote.RecordTypeID = -30 
+WHERE
+Transaction."TYPE" IN ('SalesOrd')	
+ AND transactionLine.mainline = 'T' AND transactionLine.subsidiary IN ('12')
+AND
+(Transaction.trandate BETWEEN TO_DATE( '2023-05-01', 'YYYY-MM-DD' ) AND TO_DATE( '2023-05-30', 'YYYY-MM-DD' ))
+
+
