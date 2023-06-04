@@ -67,5 +67,6 @@ Transaction."TYPE" IN ('SalesOrd')
  AND transactionLine.mainline = 'T' AND transactionLine.subsidiary IN ('12')
 AND
 (Transaction.trandate BETWEEN TO_DATE( '2023-05-01', 'YYYY-MM-DD' ) AND TO_DATE( '2023-05-30', 'YYYY-MM-DD' ))
-
+sai.m@continental.coffee
+Netsuite@2023!
 
